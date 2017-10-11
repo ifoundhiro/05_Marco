@@ -1,0 +1,21 @@
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+ERROR: LoadError: invalid command line argument - execution type
+ in error at ./error.jl:21
+ in include at ./boot.jl:261
+ in include_from_node1 at ./loading.jl:320
+ in process_options at ./client.jl:280
+ in _start at ./client.jl:378
+while loading /home/rcehxm10/Hiro/02_Project/05_Marco/01_Program/main.jl, in expression starting on line 59
+./p1a1-045.sh: line 17: ../03_Log/p1a1-045.log: Permission denied
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+ERROR: LoadError: invalid command line argument - execution type
+ in error at ./error.jl:21
+ in include at ./boot.jl:261
+ in include_from_node1 at ./loading.jl:320
+ in process_options at ./client.jl:280
+ in _start at ./client.jl:378
+while loading /home/rcehxm10/Hiro/02_Project/05_Marco/01_Program/main.jl, in expression starting on line 59
+./p1a1-045.sh: line 17: ../03_Log/p1a1-045.log: No such file or directory
+./p3a1-045.sh: line 33: m}a1-045_20170809104259.log: command not found
+qsub: Numerical value invalid!
+The initial portion of string "cwd" contains no decimal number

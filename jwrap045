@@ -1,0 +1,77 @@
+##########################################################################
+##### User: Hirotaka Miura (B1HXM10).               
+#####	Position: Research Analytics Associate.         
+#####	Organization: Federal Reserve Bank of New York.
+##########################################################################
+##### 08/09/2017: Modified.
+#####	08/09/2017: Previously modified.
+#####	08/09/2017: Created.
+#####	Description: 
+#####		- Wrapper script for launching jobs using Julia v0.4.5.
+#####	Modifications:
+#####		08/09/2017:
+#####			- Duplicated from julia-0.4.5 in /usr/local/bin/.
+#####			- Insert "-L startup_file.jl" as argument to qrsh.
+##########################################################################
+
+#!/bin/bash   
+#
+# Set site packages
+PACKAGES=/apps/julia-0.4.5/share/julia/site/
+
+#Replace all arguments on the Julia command line with quoted versions of them for parsing.
+QUOTED_ARGS=''
+
+for i in "$@"
+do
+    QUOTED_ARGS="$QUOTED_ARGS \"${i//\"/\\\"}\""
+done
+
+numargs=$#
+option="-p"
+CPUcount=24
+re='^[0-9]+$'
+
+#And check for case of -p N where N is a number and exit, ungracefully
+
+for i in "$@"
+ do
+  if [[ "$i" =~ $option[0-9] ]]; then
+  echo "Julia requires a space between -p and the cores option"
+  exit
+  fi
+done
+
+
+# Initially setting MYSLOTS to 1 before parsing for the -p option.
+# Sift through positional parameters for the -p option. If found then use the LAST positional parameter determining the number of slots.
+MYSLOTS=1
+
+for ((i=1 ; i <= $numargs ; i++))
+do
+      if [ "$1" == "$option" ]; then
+        if [[ "$2" =~ $re ]]; then
+                  MYSLOTS=$2
+        fi
+      fi
+    shift
+done
+
+# If MYSLOTS is set to too large a value, exit with some advice.
+if [ $MYSLOTS -gt $CPUcount ]; then
+     MYSLOTS=1
+     echo "You have requested more cores than any of the nodes have. Please pick a number less than $CPUcount."
+     echo "Run 'qstat -f' and checking per node. For instance consider using $USE cores."
+     exit
+fi
+
+#Run the parallel or the serial job.
+export UMASK=`umask`
+unset module
+
+#echo "Final options to run Julia with will be: $QUOTED_ARGS  -p $MYSLOTS"
+ENV["JULIA_PKGDIR"]="/apps/julia-0.4.5/share/julia/site/"
+qrsh -V -N Julia -pe julia $MYSLOTS -q background.q -cwd "umask $UMASK;/apps/julia-0.4.5/bin/julia -L startup_file.jl $QUOTED_ARGS -p $MYSLOTS"
+
+
+
