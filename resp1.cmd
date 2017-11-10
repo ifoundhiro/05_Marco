@@ -1,18 +1,4 @@
 @echo off 
-REM User: Hirotaka Miura (B1HXM10).               
-REM	Position: Research Analytics Associate.         
-REM	Organization: Federal Reserve Bank of New York.
-REM 09/18/2017: Modified.
-REM	09/11/2017: Previously modified.
-REM	09/11/2017: Created.
-REM	Description: 
-REM		- Windows batch file to execute specified program.REM	Modifications:
-REM		09/11/2017:
-REM			- Duplicated from etl.py.cmd.
-REM		09/18/2017:
-REM			- Program filename changed from 'update_response_database.py.cmd' 
-REM				to 'UPDATE_RESPONSE_TABLE.py.cmd.'
-REM			- Update python program filename.
 
 REM Set variables.
 SET prog=UPDATE_RESPONSE_TABLE.py

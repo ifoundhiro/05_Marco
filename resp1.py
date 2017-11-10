@@ -1,24 +1,4 @@
 ##########################################################################
-##### User: Hirotaka Miura (B1HXM10).                                
-##### Position: Research Analytics Associate.                                            
-##### Organization: Federal Reserve Bank of New York.
-##########################################################################   
-##### 11/08/2017: Modified.
-##### 11/06/2017: Previously modified.
-##### 11/06/2017: Created.
-##### Description: 
-##### 	- Program to update 2052a validation response database.
-#####		- Release version 1.1.
-##### Modifications:
-#####		11/06/2017: 
-#####			- Duplicated from release 1.0.
-#####			- Modify to use multiple config files.
-#####			- Make minor modifications.
-#####		11/08/2017:
-#####			- Adjust gssconfig field name.
-#####			- Externalize rspconfig filename.
-#####			- Change moving of rspconfig file to copy.
-##########################################################################
 ##### Import modules.
 import getpass as gp			##### For username.
 import os									##### For operating system functions.
