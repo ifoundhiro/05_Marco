@@ -1,7 +1,0 @@
-git config --global url."https://".insteadOf git://
-
-PATH=/apps/git/git1.9/bin:$PATH
-
-git add .
-git commit -m "Push initial codebase"
-git push origin master
